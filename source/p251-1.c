@@ -10,13 +10,13 @@ int main(void)
 	printf("削除するファイルの名前を入力してください: ");
 	gets(file);
 
-	if(fopen(file, "rb") == NULL){
-		puts("ファイルが存在しません。");
-		exit(1);
-	}
-
 	printf("本当に削除してよろしいですか？(Y/N): ");
-	if(toupper(getche()) == 'Y') remove(file);
+	if(toupper(getche()) == 'Y'){
+		if(remove(file)){
+			puts("\nファイルが存在しません。");
+			exit(1);
+		}
+	}
 
 	return 0;
 }
